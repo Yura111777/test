@@ -12,6 +12,23 @@ body {
   position: relative;
   overflow: hidden;
 }
+body > .swiper-pagination {
+  position: absolute;
+  text-align: center;
+  transition: 0.3s opacity;
+  z-index: 10;
+  transform: rotate(90deg) translate(-50%, 120%);
+  top: 50%;
+}
+body > .swiper-pagination.swiper-pagination-vertical {
+  right: auto;
+  left: 10%;
+}
+body > .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  margin: 20px 0 20px 20px;
+}
 
 .swiper-container-horizontal {
   width: 100%;
@@ -21,7 +38,7 @@ body {
 .swiper-container-horizontal .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: transparent;
   border: 1px solid dodgerblue;
   /* Center slide text vertically */
   display: -webkit-box;
@@ -38,7 +55,7 @@ body {
   align-items: center;
 }
 
-.section-folder {
+.wrapper {
   display: block;
   position: absolute;
   top: 50%;
@@ -48,7 +65,28 @@ body {
   width: 80%;
   overflow: hidden;
 }
-.section-folder .fluid {
+.wrapper .on-bottom, .wrapper .on-top {
+  display: block;
+  z-index: 100;
+  opacity: 0;
+  transition: 0.5s opacity ease;
+  font-size: 34px;
+  position: absolute;
+  bottom: 60px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  left: 0;
+}
+.wrapper .on-bottom.active, .wrapper .on-top.active {
+  opacity: 1;
+  transition: 0.5s opacity ease;
+}
+.wrapper .on-top {
+  bottom: auto;
+  top: 10px;
+}
+.wrapper .fluid {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -56,11 +94,11 @@ body {
   top: 0;
   background-color: #fff;
 }
-.section-folder .middle-slide {
+.wrapper .middle-slide {
   background: url("../img/section2.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .center-folder {
+.wrapper .center-folder {
   display: block;
   position: absolute;
   width: 100%;
@@ -68,29 +106,29 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.section-folder .top-slide {
+.wrapper .top-slide {
   background: url("../img/55.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .info-text {
+.wrapper .info-text {
   float: left;
   width: 33.33333333%;
 }
-.section-folder .info-text .inner-text {
+.wrapper .info-text .inner-text {
   padding: 0 15px;
   margin: 30px;
   border: 1px solid dodgerblue;
   background-color: #fff;
 }
-.section-folder .swiper-container-horizontal-second {
+.wrapper .swiper-container-horizontal-second {
   width: 100%;
   height: 300px;
   margin: 20px auto;
 }
-.section-folder .swiper-container-horizontal-second .swiper-slide {
+.wrapper .swiper-container-horizontal-second .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: transparent;
   border: 0;
   /* Center slide text vertically */
   display: -webkit-box;
@@ -106,42 +144,71 @@ body {
   -webkit-align-items: center;
   align-items: center;
 }
-.section-folder .swiper-container-horizontal-second .swiper-slide p {
+.wrapper .swiper-container-horizontal-second .swiper-slide p {
   font-size: 14px;
 }
-.section-folder .bottom-slide {
+.wrapper .bottom-slide {
   background: url("../img/77.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .sl-img-1 {
+.wrapper .sl-img-1 {
   background: url("../img/22.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .sl-img-2 {
+.wrapper .sl-img-2 {
   background: url("../img/33.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .sl-img-3 {
+.wrapper .sl-img-3 {
   background: url("../img/66.jpg") no-repeat center;
   background-size: cover;
 }
-.section-folder .sl-img-4 {
+.wrapper .sl-img-4 {
   background: url("../img/11.jpg") no-repeat center;
   background-size: cover;
 }
 
 @media (max-width: 767px) {
-  .section-folder {
-    width: 95%;
+  body > .swiper-pagination.swiper-pagination-vertical {
+    right: auto;
+    left: 3%;
   }
-  .section-folder .info-text {
+  body > .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 0 0 10px;
+  }
+
+  .wrapper {
+    width: 80%;
+  }
+  .wrapper .swiper-container-horizontal-second {
+    height: 380px;
+  }
+  .wrapper .on-bottom {
+    font-size: 20px;
+  }
+  .wrapper .on-top {
+    font-size: 20px;
+  }
+  .wrapper .info-text {
     float: none;
     width: 100%;
   }
-  .section-folder .info-text .inner-text {
+  .wrapper .info-text .inner-text {
     padding: 0 15px;
     margin: 30px;
     border: 1px solid dodgerblue;
+    max-height: 85%;
+    overflow: auto;
+  }
+
+  .swiper-button-next {
+    display: none;
+  }
+
+  .swiper-button-prev {
+    display: none;
   }
 }
 

@@ -8,7 +8,7 @@ var swiper = new Swiper('.swiper-container-horizontal', {
         // when window width is >= 320px
         320: {
             slidesPerView: 1,
-            spaceBetween: 30
+            spaceBetween: 0
         },
         // when window width is >= 480px
         480: {
@@ -20,7 +20,9 @@ var swiper = new Swiper('.swiper-container-horizontal', {
             slidesPerView: 3,
             spaceBetween: 40
         }
-    }
+    },
+    nextButton:'.swiper-button-next',
+    prevButton: '.swiper-button-prev'
 });
 
 
@@ -34,10 +36,23 @@ var swiperVertical = new Swiper('.swiper-container-vertical', {
     slidesPerView: 1,
     spaceBetween: 30,
     mousewheel: true,
-    pagination: '.swiper-pagination-vertical'
+    pagination: '.swiper-pagination-vertical',
+    onSlideChangeEnd: function (){
+        if(swiperVertical.activeIndex === 2){
+            $('.on-bottom').addClass('active');
+        }
+        else if(swiperVertical.activeIndex === 0){
+            $('.on-top').addClass('active');
+        }
+        else{
+            $('.on-bottom').removeClass('active');
+            $('.on-top').removeClass('active');
+        }
+    }
 
 });
 
+console.log(swiperVertical.activeIndex)
 
 if(parseInt($('body').width()) < 800){
  $('.info-text').addClass('swiper-slide');
